@@ -40,7 +40,7 @@ protected :
      * This is P(C=classNum).
      */
 
-		return m_classTotals[classNumber] / (m_classTotals[0] + m_classTotals[1]);
+		return (double)m_classTotals[classNumber] / (m_classTotals[0] + m_classTotals[1]);
   }
 
 	double getLikelihood(int classNumber, string s) {
@@ -132,8 +132,6 @@ public :
      * You can do this using calls to getPriorProbability and getLikelihood.
      * You do not need to call getPosteriorProbability.
      */
-
-    return 0.0;  // stub, replace me!
   }
 
 	double getPosteriorProbability(int classNumber, string s) {
@@ -152,8 +150,9 @@ public :
      * Note that this function is not necessary for a working classifier!
      * That is, you don't need to call getPosteriorProbability inside of classify.
      */
-
-    return 0.0;  // stub, replace me!
+		double numerator = getLikelihood(classNumber, s) * getPriorProbability(classNumber);
+		double denominator = getLikelihood(0, s)*getPriorProbability(0) + getLikelihood(1, s)*getPriorProbability(1);
+		return numerator / denominator;
   }
 
 };

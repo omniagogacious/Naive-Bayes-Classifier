@@ -18,6 +18,12 @@ using std::string;
  *
  * Stores counts and computes probabilities for one boolean feature.
  */
+
+// DELETE THIS !!!!!
+#include <iostream>
+using std::cout;
+using std::endl;
+
 class Feature {
 
   /* counts[][] is a 2x2 matrix that stores for each of the
@@ -53,11 +59,12 @@ public :
 	int isFeaturePresent(string s) {
 		size_t found = s.find(m_toMatch);
 		bool featurePresent = (found != string::npos);
-		if (featurePresent)
+		if (featurePresent) {
 			return 1;
-		else
+		}
+		else {
 			return 0;
-			
+		}
     /* DONE
      *
      * Determine whether this feature occurs in the string.
@@ -70,7 +77,8 @@ public :
 	   * 2 classes (0 and 1), the number of training examples we've
 	   * seen that don't have the feature (0) or have it (1).
 	*/
-		m_counts[featurePresence][classNumber]++;
+	
+		m_counts[classNumber][featurePresence]++;
 		m_totalPerClass[classNumber]++;
     /* YOUR CODE HERE
      *
@@ -91,7 +99,7 @@ public :
      */
 		//.. you need to smooth it so there's never a 0 or 1 probability
 		// (m_totalPerClass[classNumber]+2)
-		double prob = m_counts[featurePresence][classNumber]+1;
+		double prob = m_counts[classNumber][featurePresence]+1;
 		return prob;
   }
 };
